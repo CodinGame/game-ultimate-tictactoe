@@ -1,0 +1,71 @@
+<div id="statement_back" class="statement_back" style="display:none"></div>  <div class="statement-body">
+      <!-- LEAGUE ALERT -->
+      <div style="color: #7cc576; 
+        background-color: rgba(124, 197, 118,.1);
+        padding: 20px;
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        text-align: left;">
+          <div style="text-align: center; margin-bottom: 6px">
+            <img src="//cdn.codingame.com/smash-the-code/statement/league_wood_04.png" />
+          </div>
+          <p style="text-align: center; font-weight: 700; margin-bottom: 6px;">
+            This is a <b>league based</b> challenge.
+          </p>
+          <span class="statement-league-alert-content">
+            For this challenge, multiple versions of the same game are available. Once you have proven your skills on this first version, you will access a higher league and extra rules will be unlocked.
+          </span>
+      </div> 
+      <!-- GOAL --> 
+      <div class="statement-section statement-goal"> 
+        <h2> 
+          <span class="icon icon-goal">&nbsp;</span> 
+          <span>The Goal</span> 
+        </h2> 
+        <div class="statement-goal-content"> 
+          We're adding a new level of complexity: the game is now played on a tic-tac-toe board where each square is a normal tic-tac-toe. The objective is to align 3 marks on the main tic-tac-toe board by winning on the smaller boards.
+        </div> 
+      </div> 
+      <!-- RULES --> 
+      <div class="statement-section statement-rules"> 
+        <h2> 
+          <span class="icon icon-rules">&nbsp;</span> 
+          <span>Rules</span> 
+        </h2> 
+        <div><div class="statement-rules-content"><p>When a player plays on a small board, he also decides where the next player will be allowed to play: for example, if a player has played in the bottom left square of one of the small boards, the next player will play on the small board located at the bottom left square of the main board.</p>
+
+<p>If a player is sent to a board that is either already won, or full, then that player is allowed to play in any empty square.</p>
+
+<p>You can download the source code of this game on <a href="https://github.com/CodinGame/game-ultimate-tictactoe" target="_blank">GitHub</a>. You can create your own game using the <a href="https://github.com/CodinGame/codingame-sdk-doc" target="_blank">CodinGame SDK</a>!</p></div>
+          <!-- Victory conditions --> 
+          <div class="statement-victory-conditions"> 
+            <div class="icon victory"></div> 
+            <div class="blk"> 
+              <div class="title">Victory Conditions</div> 
+              <div class="text">You've won on 3 aligned smaller tic-tac-toe boards.</div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+      <!-- PROTOCOL --> 
+      <div class="statement-section statement-protocol"> 
+        <h2> 
+          <span class="icon icon-protocol">&nbsp;</span> 
+          <span>Game Input</span> 
+        </h2> 
+        <!-- Protocol block --> 
+        <div class="blk"> 
+  <div class="title">Input for one game turn</div> 
+          <div class="text"><span class="statement-lineno">Line 1:</span> 2 space separated integers <var>opponentRow</var> and <var>opponentCol</var>, the opponent's last action (<const>-1</const> <const>-1</const> for the first turn). <br>
+<span class="statement-lineno">Line 2:</span> the number of valid actions for this turn, <var>validActionCount</var>. <br>
+<span class="statement-lineno">Next <var>validActionCount</var> lines:</span> 2 space separated integers <var>row</var> and <var>col</var>, the coordinates you're allowed to play at.</div> 
+        </div> 
+ 
+        <!-- Protocol block --> 
+        <div class="blk"> 
+  <div class="title">Output for one game turn</div> 
+          <div class="text"><span class="statement-lineno">Line 1:</span> 2 space separated integers <var>row</var> and <var>col</var>.</div> 
+        </div> 
+      </div>
+  </div>

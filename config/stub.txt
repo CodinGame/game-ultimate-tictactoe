@@ -1,0 +1,5 @@
+gameloop
+read opponentRow:int opponentCol:int
+read validActionCount:int
+loop validActionCount read row:int col:int
+write 0 0

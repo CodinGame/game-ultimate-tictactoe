@@ -1,0 +1,70 @@
+<div id="statement_back" class="statement_back" style="display:none"></div>  <div class="statement-body">
+      <!-- LEAGUE ALERT -->
+      <div style="color: #7cc576; 
+        background-color: rgba(124, 197, 118,.1);
+        padding: 20px;
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        text-align: left;">
+          <div style="text-align: center; margin-bottom: 6px">
+            <img src="//cdn.codingame.com/smash-the-code/statement/league_wood_04.png" />
+          </div>
+          <p style="text-align: center; font-weight: 700; margin-bottom: 6px;">
+            Ce challenge se déroule en <b>ligue</b>.
+          </p>
+          <span class="statement-league-alert-content">
+            Pour ce challenge, plusieurs versions du même jeu seront disponibles. Quand vous aurez prouvé votre valeur dans la première version, vous accéderez à la ligue supérieure et débloquerez de nouvelles règles.
+          </span>
+      </div> 
+      <!-- GOAL --> 
+      <div class="statement-section statement-goal"> 
+        <h2> 
+          <span class="icon icon-goal">&nbsp;</span> 
+          <span>Objectif</span> 
+        </h2> 
+        <div class="statement-goal-content"> 
+          Nous ajoutons un nouveau degré de complexité : le jeu se joue maintenant sur une grille de tic-tac-toe où chaque case est un tic-tac-toe classique. L'objectif est d'aligner 3 marques sur la grille de tic-tac-toe principale en gagnant sur les grilles plus petites.
+        </div> 
+      </div> 
+      <!-- RULES --> 
+      <div class="statement-section statement-rules"> 
+        <h2> 
+          <span class="icon icon-rules">&nbsp;</span> 
+          <span>Règles</span> 
+        </h2> 
+        <div><div class="statement-rules-content"><p>Lorsqu'un joueur joue sur une petite grille, il décide également de là où pourra jouer le prochain joueur : par exemple, si un joueur joue sur la case située en bas à gauche de l'une des petites grilles, alors le prochain joueur devra jouer sur la petite grille située en bas à gauche de la grille principale.</p>
+<p>Si un joueur est envoyé sur une grille déjà gagnée, ou complète, alors le joueur est autorisé à jouer sur n'importe quelle case vide.</p>
+
+<p>Le code source de ce jeu est disponible sur <a href="https://github.com/CodinGame/game-ultimate-tictactoe" target="_blank">GitHub</a>. Vous aussi, vous pouvez créer votre jeu à l'aide du <a href="https://github.com/CodinGame/codingame-sdk-doc" target="_blank">CodinGame SDK</a> !</p></div> 
+          <!-- Victory conditions --> 
+          <div class="statement-victory-conditions"> 
+            <div class="icon victory"></div> 
+            <div class="blk"> 
+              <div class="title">Conditions de victoire</div> 
+              <div class="text">Vous avez gagné sur 3 grilles de tic-tac-toe alignées</div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+      <!-- PROTOCOL --> 
+      <div class="statement-section statement-protocol"> 
+        <h2> 
+          <span class="icon icon-protocol">&nbsp;</span> 
+          <span>Entrées du jeu</span> 
+        </h2> 
+        <!-- Protocol block --> 
+        <div class="blk"> 
+  <div class="title">Entrées pour un tour de jeu</div> 
+          <div class="text"><span class="statement-lineno">Ligne 1:</span> 2 entiers séparés par un espace <var>opponentRow</var> et <var>opponentCol</var>, les coordonnées jouées par l'adversaire au tour précédent (<const>-1</const> <const>-1</const> pour le tout premier tour). <br>
+<span class="statement-lineno">Ligne 2:</span> le nombre d'actions valides pour ce tour de jeu, <var>validActionCount</var>. <br>
+<span class="statement-lineno">Les <var>validActionCount</var> lignes suivantes:</span> 2 entiers séparés par un espace <var>row</var> et <var>col</var>, les coordonnées où vous pouvez jouer.</div> 
+        </div> 
+ 
+        <!-- Protocol block --> 
+        <div class="blk"> 
+  <div class="title">Sortie pour un tour de jeu</div> 
+          <div class="text"><span class="statement-lineno">Ligne 1:</span> 2 entiers séparés par un espace <var>row</var> et <var>col</var>.</div> 
+        </div> 
+      </div>
+  </div>
