@@ -200,7 +200,14 @@ public class Referee extends AbstractReferee {
     @Override
     public void gameTurn(int turn) {
         Player player = gameManager.getPlayer(turn % gameManager.getPlayerCount());
-        
+
+        // Temporary fix (will be fixed in the SDK):
+        if (turn == 0 || turn == 1) {
+            gameManager.setTurnMaxTime(1000);
+        } else {
+            gameManager.setTurnMaxTime(50);
+        }
+
         sendInputs(player, validActions);
         player.execute();
 
