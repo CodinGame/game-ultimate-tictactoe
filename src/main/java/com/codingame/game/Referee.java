@@ -232,7 +232,7 @@ public class Referee extends AbstractReferee {
                 grid = smallGrids[action.row / 3][action.col / 3];
                 if (grid.play(new Action(action.player, action.row % 3, action.col % 3)) > 0) {
                     player.setScore(player.getScore() + 1);
-                    gameManager.addTooltip(player, "Won one cell");
+                    gameManager.addTooltip(player, player.getNicknameToken() + " has won one cell");
                     grid.hide();
                     if (masterGrid.play(new Action(action.player, action.row / 3, action.col / 3)) > 0) {
                         setWinner(player);
