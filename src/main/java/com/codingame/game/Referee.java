@@ -13,12 +13,10 @@ import com.codingame.gameengine.module.entities.GraphicEntityModule;
 import com.codingame.gameengine.module.entities.Sprite;
 import com.codingame.gameengine.module.entities.Text;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 
 public class Referee extends AbstractReferee {
     @Inject private GameManager<Player> gameManager;
     @Inject private GraphicEntityModule graphicEntityModule;
-    @Inject private Provider<TicTacToeGrid> ticTacToeGridProvider;
 
     private TicTacToeGrid masterGrid;
     private TicTacToeGrid[][] smallGrids;
@@ -72,7 +70,7 @@ public class Referee extends AbstractReferee {
         int bigCellSize = 240;
         int bigOrigX = (int) Math.round(1920 / 2 - bigCellSize);
         int bigOrigY = (int) Math.round(1080 / 2 - bigCellSize);
-        masterGrid = ticTacToeGridProvider.get();
+        masterGrid = new TicTacToeGrid(graphicEntityModule);
         masterGrid.draw(bigOrigX, bigOrigY, bigCellSize, 5, 0xf9b700);
 
         if (gameManager.getLeagueLevel() == 2) {
@@ -83,7 +81,7 @@ public class Referee extends AbstractReferee {
                     int cellSize = 60;
                     int origX = bigOrigX + bigCellSize * i - cellSize;
                     int origY = bigOrigY + bigCellSize * j - cellSize;
-                    smallGrids[j][i] = ticTacToeGridProvider.get();
+                    smallGrids[j][i] = new TicTacToeGrid(graphicEntityModule);
                     smallGrids[j][i].draw(origX, origY, cellSize, 3, 0xffffff);
                 }
             }

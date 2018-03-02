@@ -5,11 +5,8 @@ import com.codingame.gameengine.module.entities.GraphicEntityModule;
 import com.codingame.gameengine.module.entities.Group;
 import com.codingame.gameengine.module.entities.Line;
 import com.codingame.gameengine.module.entities.Sprite;
-import com.google.inject.Inject;
 
 public class TicTacToeGrid extends TicTacToe {
-    @Inject private GraphicEntityModule graphicEntityModule;
-
     private String[] images = {"cross.png", "circle.png"};
     
     private Group entity;
@@ -17,6 +14,12 @@ public class TicTacToeGrid extends TicTacToe {
     private int origX;
     private int origY;
     private int cellSize;
+
+    private GraphicEntityModule graphicEntityModule;
+
+    public TicTacToeGrid(GraphicEntityModule graphicEntityModule) {
+        this.graphicEntityModule = graphicEntityModule;
+    }
 
     public void draw(int origX, int origY, int cellSize, int lineWidth, int lineColor) {
         this.origX = origX;
