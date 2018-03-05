@@ -7,18 +7,27 @@ import com.codingame.gameengine.module.entities.Line;
 import com.codingame.gameengine.module.entities.Sprite;
 
 public class TicTacToeGrid extends TicTacToe {
-    private String[] images = {"cross.png", "circle.png"};
-    
+    enum State {
+        ACTIVE, INACTIVE
+    }
+
+    private String[] images = { "cross.png", "circle.png" };
+
     private Group entity;
-    
+
     private int origX;
     private int origY;
     private int cellSize;
+    private State state;
+    private State prevState;
+    
 
     private GraphicEntityModule graphicEntityModule;
 
     public TicTacToeGrid(GraphicEntityModule graphicEntityModule) {
         this.graphicEntityModule = graphicEntityModule;
+        state = State.ACTIVE;
+        prevState = State.ACTIVE;
     }
 
     public void draw(int origX, int origY, int cellSize, int lineWidth, int lineColor) {
@@ -26,7 +35,7 @@ public class TicTacToeGrid extends TicTacToe {
         this.origY = origY;
         this.cellSize = cellSize;
         this.entity = graphicEntityModule.createGroup();
-        
+
         double xs[] = new double[] { 0, 0, 1, 2 };
         double x2s[] = new double[] { 2, 2, 0, 1 };
         double ys[] = new double[] { 1, 2, 0, 0 };
@@ -50,24 +59,24 @@ public class TicTacToeGrid extends TicTacToe {
         drawPlay(action);
         return winner;
     }
-    
+
     public void drawPlay(Action action) {
-        Sprite avatar = graphicEntityModule.createSprite()
-            .setX(convert(origX, cellSize, action.col))
-            .setY(convert(origY, cellSize, action.row))
-            .setImage(images[action.player.getIndex()])
-            .setBaseWidth((int)(0.8 * cellSize))
-            .setBaseHeight((int)(0.8 * cellSize))
-            .setTint(action.player.getColorToken())
-            .setAnchor(0.5);
-        
+        Sprite symbol = graphicEntityModule.createSprite()
+                .setX(convert(origX, cellSize, action.col))
+                .setY(convert(origY, cellSize, action.row))
+                .setImage(images[action.player.getIndex()])
+                .setBaseWidth((int) (0.8 * cellSize))
+                .setBaseHeight((int) (0.8 * cellSize))
+                .setTint(action.player.getColorToken())
+                .setAnchor(0.5);
+
         // Animate arrival
-        avatar.setScale(0);
-        graphicEntityModule.commitEntityState(0.2, avatar);
-        avatar.setScale(1, Curve.ELASTIC);
-        graphicEntityModule.commitEntityState(1, avatar);
-        
-        this.entity.add(avatar);
+        symbol.setScale(0);
+        graphicEntityModule.commitEntityState(0.1, symbol);
+        symbol.setScale(1, Curve.ELASTIC);
+        graphicEntityModule.commitEntityState(0.9, symbol);
+
+        this.entity.add(symbol);
     }
 
     private int convert(int orig, int cellSize, double unit) {
@@ -77,16 +86,25 @@ public class TicTacToeGrid extends TicTacToe {
     public void hide() {
         this.entity.setVisible(false);
     }
-    
+
     public void activate() {
-        this.entity.setAlpha(1);
-        graphicEntityModule.commitEntityState(0.1, entity);
+        state = State.ACTIVE;
     }
-    
+
     public void deactivate() {
-        if (winner == 0) {
-            this.entity.setAlpha(0.5);
-            graphicEntityModule.commitEntityState(0.1, entity);
+        state = State.INACTIVE;
+    }
+
+    public void animate() {
+        if (state != prevState) {
+            if (state == State.INACTIVE) {
+                this.entity.setAlpha(0.5, Curve.NONE);
+                graphicEntityModule.commitEntityState(0.9, entity);
+            } else {
+                this.entity.setAlpha(1, Curve.NONE);
+                graphicEntityModule.commitEntityState(0.9, entity);
+            }
+            prevState = state;
         }
     }
 }
