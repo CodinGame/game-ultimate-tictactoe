@@ -85,6 +85,7 @@ public class TicTacToeGrid extends TicTacToe {
 
     public void hide() {
         this.entity.setVisible(false);
+        graphicEntityModule.commitEntityState(0, entity);
     }
 
     public void activate() {
