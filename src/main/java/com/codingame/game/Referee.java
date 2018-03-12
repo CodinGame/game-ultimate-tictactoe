@@ -190,10 +190,10 @@ public class Referee extends AbstractReferee {
                     }
                 }
             }
-        }
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                smallGrids[row][col].animate();
+            for (int row = 0; row < 3; row++) {
+                for (int col = 0; col < 3; col++) {
+                    smallGrids[row][col].animate();
+                }
             }
         }
         Collections.shuffle(validActions, random);
