@@ -15,14 +15,16 @@ public class TicTacToeGrid extends TicTacToe {
 
     private Group entity;
 
-    private int origX;
-    private int origY;
+    private int centerX;
+    private int centerY;
     private int cellSize;
+    private int lineWidth;
     private State state;
     private State prevState;
     
 
     private GraphicEntityModule graphicEntityModule;
+
 
     public TicTacToeGrid(GraphicEntityModule graphicEntityModule) {
         this.graphicEntityModule = graphicEntityModule;
@@ -30,27 +32,21 @@ public class TicTacToeGrid extends TicTacToe {
         prevState = State.ACTIVE;
     }
 
-    public void draw(int origX, int origY, int cellSize, int lineWidth, int lineColor) {
-        this.origX = origX;
-        this.origY = origY;
+    public void draw(String image, int centerX, int centerY, int cellSize, int lineWidth) {
+        this.centerX = centerX;
+        this.centerY = centerY;
         this.cellSize = cellSize;
+        this.lineWidth = lineWidth;
         this.entity = graphicEntityModule.createGroup();
 
-        double xs[] = new double[] { 0, 0, 1, 2 };
-        double x2s[] = new double[] { 2, 2, 0, 1 };
-        double ys[] = new double[] { 1, 2, 0, 0 };
-        double y2s[] = new double[] { 0, 1, 2, 2 };
-
-        for (int i = 0; i < 4; ++i) {
-            Line line = graphicEntityModule.createLine()
-                    .setX(convert(origX, cellSize, xs[i] - 0.5))
-                    .setX2(convert(origX, cellSize, x2s[i] + 0.5))
-                    .setY(convert(origY, cellSize, ys[i] - 0.5))
-                    .setY2(convert(origY, cellSize, y2s[i] + 0.5))
-                    .setLineWidth(lineWidth)
-                    .setLineColor(lineColor);
-            entity.add(line);
-        }
+        Sprite sprite = graphicEntityModule
+                .createSprite()
+                .setImage(image)
+                .setAnchorX(0.5)
+                .setAnchorY(0.5)
+                .setX(centerX)
+                .setY(centerY);
+        entity.add(sprite);
     }
 
     @Override
@@ -62,8 +58,8 @@ public class TicTacToeGrid extends TicTacToe {
 
     public void drawPlay(Action action) {
         Sprite symbol = graphicEntityModule.createSprite()
-                .setX(convert(origX, cellSize, action.col))
-                .setY(convert(origY, cellSize, action.row))
+                .setX(convert(centerX, action.col - 1))
+                .setY(convert(centerY, action.row - 1))
                 .setImage(images[action.player.getIndex()])
                 .setBaseWidth((int) (0.8 * cellSize))
                 .setBaseHeight((int) (0.8 * cellSize))
@@ -79,8 +75,8 @@ public class TicTacToeGrid extends TicTacToe {
         this.entity.add(symbol);
     }
 
-    private int convert(int orig, int cellSize, double unit) {
-        return (int) (orig + unit * cellSize);
+    private int convert(int orig, double unit) {
+        return (int) (orig + unit * (cellSize + lineWidth));
     }
 
     public void hide() {

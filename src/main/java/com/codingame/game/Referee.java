@@ -58,6 +58,8 @@ public class Referee extends AbstractReferee {
                 .setImage("logo.png")
                 .setX(280)
                 .setY(915)
+                .setBaseWidth(285)
+                .setBaseHeight(37)
                 .setAnchor(0.5);
         graphicEntityModule.createSprite()
                 .setImage("logoCG.png")
@@ -68,21 +70,22 @@ public class Referee extends AbstractReferee {
 
     private void drawGrids() {
         int bigCellSize = 240;
-        int bigOrigX = (int) Math.round(1920 / 2 - bigCellSize);
-        int bigOrigY = (int) Math.round(1080 / 2 - bigCellSize);
+        int bigCellBorderWidth = 20;
+        int bigCenterX = (int) Math.round(1920 / 2);
+        int bigCenterY = (int) Math.round(1080 / 2);
         masterGrid = new TicTacToeGrid(graphicEntityModule);
-        masterGrid.draw(bigOrigX, bigOrigY, bigCellSize, 5, 0xf9b700);
+        masterGrid.draw("big_board.png", bigCenterX, bigCenterY, bigCellSize, bigCellBorderWidth);
 
         if (gameManager.getLeagueLevel() == 2) {
             smallGrids = new TicTacToeGrid[3][3];
             
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
                     int cellSize = 60;
-                    int origX = bigOrigX + bigCellSize * i - cellSize;
-                    int origY = bigOrigY + bigCellSize * j - cellSize;
-                    smallGrids[j][i] = new TicTacToeGrid(graphicEntityModule);
-                    smallGrids[j][i].draw(origX, origY, cellSize, 3, 0xffffff);
+                    int centerX = bigCenterX + (bigCellSize + bigCellBorderWidth) * i;
+                    int centerY = bigCenterY + (bigCellSize + bigCellBorderWidth) * j;
+                    smallGrids[j+1][i+1] = new TicTacToeGrid(graphicEntityModule);
+                    smallGrids[j+1][i+1].draw("small_board.png", centerX, centerY, cellSize, 10);
                 }
             }
         }
