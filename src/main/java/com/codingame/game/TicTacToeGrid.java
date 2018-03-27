@@ -3,7 +3,6 @@ package com.codingame.game;
 import com.codingame.gameengine.module.entities.Curve;
 import com.codingame.gameengine.module.entities.GraphicEntityModule;
 import com.codingame.gameengine.module.entities.Group;
-import com.codingame.gameengine.module.entities.Line;
 import com.codingame.gameengine.module.entities.Sprite;
 
 public class TicTacToeGrid extends TicTacToe {
