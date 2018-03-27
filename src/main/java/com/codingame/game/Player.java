@@ -15,6 +15,8 @@ public class Player extends AbstractPlayer {
         try {
             String[] output = getOutputs().get(0).split(" ");
             return new Action(this, Integer.parseInt(output[0]), Integer.parseInt(output[1]));
+        } catch (TimeoutException e) {
+            throw e;
         } catch (Exception e) {
             throw new InvalidAction("Invalid output.");
         }
