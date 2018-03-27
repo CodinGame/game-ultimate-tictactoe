@@ -9,6 +9,7 @@ import java.util.Random;
 import com.codingame.gameengine.core.AbstractPlayer.TimeoutException;
 import com.codingame.gameengine.core.AbstractReferee;
 import com.codingame.gameengine.core.GameManager;
+import com.codingame.gameengine.module.entities.Circle;
 import com.codingame.gameengine.module.entities.GraphicEntityModule;
 import com.codingame.gameengine.module.entities.Sprite;
 import com.codingame.gameengine.module.entities.Text;
@@ -103,20 +104,18 @@ public class Referee extends AbstractReferee {
             int y = 220;
 
             graphicEntityModule
-                    .createRectangle()
-                    .setWidth(140)
-                    .setHeight(140)
-                    .setX(x - 70)
-                    .setY(y - 70)
+                    .createCircle()
+                    .setRadius(70)
+                    .setX(x)
+                    .setY(y)
                     .setLineWidth(0)
                     .setFillColor(player.getColorToken());
 
             graphicEntityModule
-                    .createRectangle()
-                    .setWidth(120)
-                    .setHeight(120)
-                    .setX(x - 60)
-                    .setY(y - 60)
+                    .createCircle()
+                    .setRadius(60)
+                    .setX(x)
+                    .setY(y)
                     .setLineWidth(0)
                     .setFillColor(0xffffff);
 
@@ -128,14 +127,20 @@ public class Referee extends AbstractReferee {
                     .setFillColor(0xffffff)
                     .setAnchor(0.5);
 
+            Circle avatarMask = graphicEntityModule.createCircle()
+                    .setX(x)
+                    .setY(y)
+                    .setRadius(55);
+
             Sprite avatar = graphicEntityModule.createSprite()
                     .setX(x)
                     .setY(y)
                     .setZIndex(20)
                     .setImage(player.getAvatarToken())
                     .setAnchor(0.5)
-                    .setBaseHeight(116)
-                    .setBaseWidth(116);
+                    .setBaseHeight(110)
+                    .setBaseWidth(110)
+                    .setMask(avatarMask);
 
             player.hud = graphicEntityModule.createGroup(text, avatar);
         }
