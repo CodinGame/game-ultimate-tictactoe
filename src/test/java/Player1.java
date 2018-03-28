@@ -15,6 +15,7 @@ public class Player1 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Random random = new Random(0);
+        String[] texts = new String[] {"Im the king", "3 in your face", "UTTT is fun to play everyday", "GG", "Nice move"};
 
         while (true) {
             int opponentRow = in.nextInt();
@@ -31,7 +32,11 @@ public class Player1 {
             
             Action a = actions.get(random.nextInt(actions.size()));
            
-            System.out.println(String.format("%d %d", a.row, a.col));
+            String msg = texts[random.nextInt(5)];
+            if (random.nextInt(5) != 0)
+            	System.out.println(String.format("%d %d %s", a.row, a.col, msg));
+            else
+            	System.out.println(String.format("%d %d", a.row, a.col));
         }
     }
 }
