@@ -127,6 +127,14 @@ public class Referee extends AbstractReferee {
                     .setFillColor(0xffffff)
                     .setAnchor(0.5);
 
+            Text msg = graphicEntityModule.createText(" ")
+                    .setX(x)
+                    .setY(y + 200)
+                    .setZIndex(20)
+                    .setFontSize(24)
+                    .setFillColor(0xffffff)
+                    .setAnchor(0.5);
+
             Circle avatarMask = graphicEntityModule.createCircle()
                     .setX(x)
                     .setY(y)
@@ -143,6 +151,7 @@ public class Referee extends AbstractReferee {
                     .setMask(avatarMask);
 
             player.hud = graphicEntityModule.createGroup(text, avatar);
+            player.message = msg;
         }
     }
 
@@ -225,7 +234,7 @@ public class Referee extends AbstractReferee {
         // Read inputs
         try {
             final Action action = player.getAction();
-            gameManager.addToGameSummary(String.format("Player %s played (%d %d)", action.player.getNicknameToken(), action.row, action.col));
+            gameManager.addToGameSummary(String.format("Player %s played (%d %d) %s", action.player.getNicknameToken(), action.row, action.col, player.message.getText()));
 
             if (!validActions.contains(action)) {
                 throw new InvalidAction("Invalid action.");
