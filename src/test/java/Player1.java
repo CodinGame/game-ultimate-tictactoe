@@ -31,7 +31,7 @@ public class Player1 {
             
             Action a = actions.get(random.nextInt(actions.size()));
            
-            System.out.println(String.format("%d %d", a.row, a.col));
+            System.out.println(String.format("%d %d %s", a.row, a.col, "hello world"));
         }
     }
 }
