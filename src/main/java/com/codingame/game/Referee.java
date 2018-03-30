@@ -146,11 +146,11 @@ public class Referee extends AbstractReferee {
                     .setX(x)
                     .setY(y + 200)
                     .setZIndex(20)
-                    .setFontSize(24)
+                    .setFontSize(30)
                     .setFillColor(0xffffff)
                     .setAnchor(0.5);
 
-            player.hud = graphicEntityModule.createGroup(text, avatar);
+            player.hud = graphicEntityModule.createGroup(text, avatar, msg);
             player.message = msg;
         }
     }
