@@ -3,12 +3,12 @@ package com.codingame.game;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
 
 import com.codingame.gameengine.core.AbstractPlayer.TimeoutException;
 import com.codingame.gameengine.core.AbstractReferee;
 import com.codingame.gameengine.core.GameManager;
+import com.codingame.gameengine.core.MultiplayerGameManager;
 import com.codingame.gameengine.module.entities.Circle;
 import com.codingame.gameengine.module.entities.GraphicEntityModule;
 import com.codingame.gameengine.module.entities.Sprite;
@@ -16,7 +16,7 @@ import com.codingame.gameengine.module.entities.Text;
 import com.google.inject.Inject;
 
 public class Referee extends AbstractReferee {
-    @Inject private GameManager<Player> gameManager;
+    @Inject private MultiplayerGameManager<Player> gameManager;
     @Inject private GraphicEntityModule graphicEntityModule;
 
     private TicTacToeGrid masterGrid;
@@ -26,13 +26,8 @@ public class Referee extends AbstractReferee {
     private Random random;
     
     @Override
-    public Properties init(Properties params) {
-        try {
-            long seed = Long.valueOf(params.getProperty("seed"));
-            random = new Random(seed);
-        } catch(Exception e) {
-            random = new Random(0);
-        }
+    public void init() {
+        random = new Random(gameManager.getSeed());
 
         drawBackground();
         drawHud();
@@ -47,8 +42,6 @@ public class Referee extends AbstractReferee {
         }
         
         validActions = getValidActions();
-
-        return params;
     }
 
     private void drawBackground() {

@@ -3,11 +3,11 @@ package com.codingame.game;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.codingame.gameengine.core.AbstractPlayer;
+import com.codingame.gameengine.core.AbstractMultiplayerPlayer;
 import com.codingame.gameengine.module.entities.Group;
 import com.codingame.gameengine.module.entities.Text;
 
-public class Player extends AbstractPlayer {
+public class Player extends AbstractMultiplayerPlayer {
     public Group hud;
     public Text message;
 
